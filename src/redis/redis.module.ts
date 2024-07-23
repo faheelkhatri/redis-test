@@ -23,11 +23,11 @@ export const EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE = ['local', 'test'];
         port: 6378,
         ...(!EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE.includes('development') && {
           tls: {
-            // ca: [
-            //   fs.readFileSync(
-            //     path.join(__dirname, '../../../../../Downloads/server-ca.pem'),
-            //   ),
-            // ],
+            ca: [
+              fs.readFileSync(
+                path.join(__dirname, '../../../../../Downloads/server-ca.pem'),
+              ),
+            ],
             checkServerIdentity: () => undefined,
           },
         }),
