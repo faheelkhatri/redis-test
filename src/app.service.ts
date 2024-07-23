@@ -9,8 +9,8 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async setKey(key: string, value: string) {
-    await this.redisService.setCache(key, value, 0);
+  async setKey(key: string, value: string, ttl: number) {
+    await this.redisService.setCache(key, value, ttl);
   }
 
   async getKey(key: string) {
