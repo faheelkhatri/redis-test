@@ -11,7 +11,7 @@ export class AppController {
   }
 
   @Post('set')
-  async setKey(@Body() body: { key: string; value: string, ttl: number }) {
+  async setKey(@Body() body: { key: string; value: string; ttl: number }) {
     const { key, value, ttl } = body;
     await this.appService.setKey(key, value, ttl);
     return { message: 'Value set successfully' };

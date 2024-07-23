@@ -26,7 +26,9 @@ export const EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE = ['local', 'test'];
             ca: [
               fs.readFileSync(
                 // path.join(__dirname, '../../../../../Downloads/server-ca.pem'),
-                path.join(__dirname, ' ../../../../../Downloads/server-ca.pem'),
+                //working below
+                // path.join(__dirname, ' ../../../../../Downloads/server-ca.pem'),
+                path.join(__dirname, '../assets/server-ca.pem'),
               ),
             ],
             checkServerIdentity: () => undefined,
