@@ -17,11 +17,11 @@ export const EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE = ['local', 'test'];
       useFactory: async () => ({
         host: '10.55.210.3',
         store: redisStore,
-        ...(!EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE.includes('local') && {
+        ...(!EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE.includes('development') && {
           password: '1adb062f-6227-41f5-9a12-49ebca041031',
         }),
         port: 6378,
-        ...(!EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE.includes('local') && {
+        ...(!EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE.includes('development') && {
           tls: {
             // ca: [
             //   fs.readFileSync(
