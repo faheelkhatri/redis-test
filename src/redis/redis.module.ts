@@ -25,7 +25,8 @@ export const EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE = ['local', 'test'];
           tls: {
             ca: [
               fs.readFileSync(
-                path.join(__dirname, '../../../../../Downloads/server-ca.pem'),
+                // path.join(__dirname, '../../../../../Downloads/server-ca.pem'),
+                path.join(__dirname, ' ../../../Downloads/server-ca.pem'),
               ),
             ],
             checkServerIdentity: () => undefined,
