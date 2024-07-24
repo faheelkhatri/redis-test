@@ -1,9 +1,13 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { GcpSecretService } from './gcp/services/gcp-secret.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly gcpSecretService: GcpSecretService,
+  ) {}
 
   @Get()
   getHello(): string {
@@ -21,5 +25,10 @@ export class AppController {
   async getKey(@Param('key') key: string) {
     const value = await this.appService.getKey(key);
     return { key, value };
+  }
+
+  @Get()
+  testGcpSecretService() {
+    return this.gcpSecretService.getSecret('staging-redis-certificate');
   }
 }

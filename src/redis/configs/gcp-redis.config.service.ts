@@ -15,6 +15,9 @@ export class GcpRedisConfig extends BaseRedisConfig {
   }
 
   protected configureTls() {
+    console.log(
+      fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem')),
+    );
     return {
       ca: [fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem'))],
     };
