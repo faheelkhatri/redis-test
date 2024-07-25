@@ -29,6 +29,6 @@ export class AppController {
 
   @Get('secret')
   testGcpSecretService() {
-    return this.gcpSecretService.getSecret('staging-redis-certificate');
+    return this.gcpSecretService.getSecret('stage-redis-certificate');
   }
 }
