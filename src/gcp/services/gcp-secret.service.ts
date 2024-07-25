@@ -11,10 +11,10 @@ export class GcpSecretService {
 
     const gcpProjectId = this.configService.get<string>('GCP_PROJECT_ID');
 
-    const test = await client.accessSecretVersion({
+    const [version] = await client.accessSecretVersion({
       name: `projects/${gcpProjectId}/secrets/${secretName}/versions/latest`,
     });
 
-    return test;
+    return version.payload.data.toString();
   }
 }
