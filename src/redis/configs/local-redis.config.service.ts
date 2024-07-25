@@ -7,7 +7,7 @@ export class LocalRedisConfig extends BaseRedisConfig {
     super(configService, 'REDIS_HOST', 'REDIS_PORT');
   }
 
-  protected configureTls() {
+  protected async configureTls() {
     return null;
   }
 }
