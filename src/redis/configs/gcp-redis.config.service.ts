@@ -18,7 +18,7 @@ export class GcpRedisConfig extends BaseRedisConfig {
     };
   }
 
-  protected configureTls() {
+  protected async configureTls() {
     // const certificate = await this.gcpSecretService.getSecret( "stage-redis-certificate" );
     // // console.log( certificate );
     // const caBuffer = Buffer.from(certificate, 'utf-8');
