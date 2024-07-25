@@ -26,8 +26,12 @@ export class GcpRedisConfig extends BaseRedisConfig {
     // console.log(
     //   fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem')),
     // );
+    console.log(
+      fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem')),
+    );
+    console.log(Buffer.from(certificate, 'utf-8'));
     return {
-      ca: [Buffer.from(certificate, 'utf-8')],
+      ca: [fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem'))],
     };
   }
 }
