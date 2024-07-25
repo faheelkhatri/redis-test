@@ -18,17 +18,17 @@ export class GcpRedisConfig extends BaseRedisConfig {
     };
   }
 
-  protected async configureTls() {
-    const certificate = await this.gcpSecretService.getSecret( "stage-redis-certificate" );
-    // console.log( certificate );
-    const caBuffer = Buffer.from(certificate, 'utf-8');
+  protected configureTls() {
+    // const certificate = await this.gcpSecretService.getSecret( "stage-redis-certificate" );
+    // // console.log( certificate );
+    // const caBuffer = Buffer.from(certificate, 'utf-8');
 
     console.log(
       fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem')),
     );
-    console.log(caBuffer);
+    // console.log(caBuffer);
     return {
-      ca: [caBuffer],
+      ca: [fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem'))],
     };
   }
 }

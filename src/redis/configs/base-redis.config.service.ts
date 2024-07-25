@@ -19,5 +19,5 @@ export abstract class BaseRedisConfig implements RedisConfigInterface {
     this.store = redisStore;
   }
 
-  protected abstract configureTls(): Promise<Partial<{ ca: Buffer[] }>>;
+  protected abstract configureTls(): Partial<{ ca: Buffer[] }>;
 }
