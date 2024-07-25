@@ -12,11 +12,19 @@ export class GcpRedisConfig extends BaseRedisConfig {
   ) {
     super(configService, 'REDIS_HOST', 'REDIS_PORT');
     this.password = configService.get<string>('REDIS_PASSWORD');
+    // this.tls = {
+    //   checkServerIdentity: () => undefined,
+    //   ...this.configureTls(),
+    // };
+  }
+
+  async initialize() {
+    const tlsConfig = await this.configureTls();
     this.tls = {
       checkServerIdentity: () => undefined,
-      ...this.configureTls(),
+      ...tlsConfig,
     };
-  }
+  } 
 
   protected async configureTls() {
     const caCertificate = await this.gcpSecretService.getSecret(

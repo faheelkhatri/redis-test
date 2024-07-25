@@ -8,10 +8,10 @@ import { GcpSecretService } from 'src/gcp/services/gcp-secret.service';
 const EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE = ['local', 'test'];
 
 export class RedisConfigFactory {
-  static create(
+  static async create(
     configService: ConfigService,
     gcpSecretService: GcpSecretService,
-  ): RedisConfigInterface {
+  ): Promise<RedisConfigInterface> {
     const isElastiCacheEnabled = EXCLUDED_ENVIRONMENT_FOR_ELASTICACHE.includes(
       configService.get<string>('NODE_ENV'),
     );
@@ -22,7 +22,12 @@ export class RedisConfigFactory {
     } else if (provider === 'AWS') {
       return new AwsRedisConfig(configService);
     } else if (provider === 'GCP') {
-      return new GcpRedisConfig(configService, gcpSecretService);
+      const gcpRedisConfig = new GcpRedisConfig(
+        configService,
+        gcpSecretService,
+      );
+      await gcpRedisConfig.initialize();
+      return gcpRedisConfig;
     }
     throw new Error('Unsupported Redis Provider');
   }
