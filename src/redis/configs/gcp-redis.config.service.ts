@@ -19,17 +19,11 @@ export class GcpRedisConfig extends BaseRedisConfig {
   }
 
   protected async configureTls() {
-    const certificate = await this.gcpSecretService.getSecret(
-      'stage-redis-certificate',
-    );
+    // const certificate = await this.gcpSecretService.getSecret( "stage-redis-certificate" );
     // console.log( certificate );
-    // console.log(
-    //   fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem')),
-    // );
     console.log(
       fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem')),
     );
-    console.log(Buffer.from(certificate, 'utf-8'));
     return {
       ca: [fs.readFileSync(path.join(__dirname, '../../assets/server-ca.pem'))],
     };
