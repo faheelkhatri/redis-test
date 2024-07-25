@@ -5,7 +5,7 @@ import { GcpSecretService } from 'src/gcp/services/gcp-secret.service';
 
 export class GcpRedisConfig extends BaseRedisConfig {
   constructor(
-    configService: ConfigService,
+    private readonly configService: ConfigService,
     private readonly gcpSecretService: GcpSecretService,
   ) {
     super(configService, 'REDIS_HOST', 'REDIS_PORT');
@@ -21,6 +21,8 @@ export class GcpRedisConfig extends BaseRedisConfig {
   }
 
   protected async configureTls() {
+    const environment = this.configService.get<string>('NODE_ENV');
+    console.log(environment);
     const caCertificate = await this.gcpSecretService.getSecret(
       'stage-redis-certificate',
     );
