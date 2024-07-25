@@ -1,6 +1,4 @@
 import type { ConfigService } from '@nestjs/config';
-import * as fs from 'fs';
-import * as path from 'path';
 
 import { BaseRedisConfig } from './base-redis.config.service';
 import { GcpSecretService } from 'src/gcp/services/gcp-secret.service';
@@ -12,10 +10,6 @@ export class GcpRedisConfig extends BaseRedisConfig {
   ) {
     super(configService, 'REDIS_HOST', 'REDIS_PORT');
     this.password = configService.get<string>('REDIS_PASSWORD');
-    // this.tls = {
-    //   checkServerIdentity: () => undefined,
-    //   ...this.configureTls(),
-    // };
   }
 
   async initialize() {
@@ -24,7 +18,7 @@ export class GcpRedisConfig extends BaseRedisConfig {
       checkServerIdentity: () => undefined,
       ...tlsConfig,
     };
-  } 
+  }
 
   protected async configureTls() {
     const caCertificate = await this.gcpSecretService.getSecret(

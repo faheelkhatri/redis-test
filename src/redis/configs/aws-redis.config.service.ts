@@ -11,7 +11,7 @@ export class AwsRedisConfig extends BaseRedisConfig {
     };
   }
 
-  protected configureTls() {
+  protected async configureTls() {
     return null;
   }
 }
